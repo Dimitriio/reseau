@@ -17,6 +17,7 @@ public class Writer extends BasicAbstractWriter {
 	}
 	
 	public void writeUser(User user) {
+		writeInt(1);
 		writeString(user.getName());
 		writeInt(user.getX());
 		writeInt(user.getY());
@@ -24,11 +25,20 @@ public class Writer extends BasicAbstractWriter {
 		writeInt(user.getMode().ordinal());
 		writeInt(user.getPreferences().size());
 		for(int i = 0; i < user.getPreferences().size(); i++ )
-		{
-			writeString(user.getPreferenceByPosition(i).getName());
-			writeInt(user.getPreferenceByPosition(i).getLevel());
-			writeBoolean(user.getPreferenceByPosition(i).isVisibility());
-		}
+			writePreference(user, i);
+	}
+	
+	public void writePreference(User user, int position)
+	{
+		writeString(user.getPreferenceByPosition(position).getName());
+		writeInt(user.getPreferenceByPosition(position).getLevel());
+		writeBoolean(user.getPreferenceByPosition(position).isVisibility());
+	}
+
+	public void writeKo()
+	{
+		writeInt(2);
+		writeBoolean(false);
 	}
 }
 

@@ -11,7 +11,7 @@ import fr.ensisa.hassenforder.proximity.model.User;
 public class SessionClient {
 
 	private Socket connection;
-	
+
 	public SessionClient (Socket connection) {
 		this.connection = connection;
 	}
@@ -22,8 +22,10 @@ public class SessionClient {
 			Reader reader = new Reader (connection.getInputStream()); 
 			writer.writeUserConnect(name);
 			writer.send();
-			User user = reader.readUser();
-			return user;
+			reader.receive();
+			if(reader.getType() == 1)
+				return reader.readUser();
+			return null;
 		} catch (IOException e) {
 			return null;
 		}

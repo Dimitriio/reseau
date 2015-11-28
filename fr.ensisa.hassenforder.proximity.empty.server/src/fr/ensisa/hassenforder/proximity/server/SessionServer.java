@@ -11,10 +11,12 @@ public class SessionServer {
 
 	private Socket connection;
 	private Document document;
+	private UsersState state;
 	
-	public SessionServer (Document document, Socket connection) {
+	public SessionServer (Document document, Socket connection,UsersState state) {
 		this.document = document;
 		this.connection = connection;
+		this.state = state;
 	}
 
 	public boolean operate() {
@@ -24,7 +26,7 @@ public class SessionServer {
 			reader.receive ();
 			switch (reader.getType ())
 			{
-				case 0 :
+				case 0 : 
 					return false; // socket closed
 				case 1 : 								/* requete USER */ 
 					reader.receive();
@@ -32,7 +34,18 @@ public class SessionServer {
 					{
 					case 1 :							/* discriminant CONNECT */
 						User user = reader.readUser(this.document);
-						writer.writeUser(user);
+						if(user == null)
+						{
+							writer.writeKo();
+							break;
+						}
+						if(this.state.userIsConnected(user.getName()) && this.state.getUserPort(user.getName()) != this.connection.getPort())
+							writer.writeKo();
+						else
+						{
+							this.state.addUser(user.getName(), this.connection.getPort());
+							writer.writeUser(user);
+						}
 					}
 					break;
 				case 2 :

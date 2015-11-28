@@ -19,7 +19,8 @@ public class Reader extends BasicAbstractReader {
 	public void receive() {
 		type = readInt ();
 		switch (type) {
-		case 0: break;
+		case 0: 
+			break;
 		}
 	}
 	
@@ -39,5 +40,10 @@ public class Reader extends BasicAbstractReader {
 			user.addPreference(new Preference(name, level, visibility));
 		}
 		return user;
+	}
+	
+	public boolean readKo()
+	{
+		return readBoolean();
 	}
 }
