@@ -40,6 +40,11 @@ public class Document {
 			socket = new Socket("localhost", Protocol.PROXIMITY_PORT_ID);
 			session = new SessionClient(socket);
 	    	me = session.connect(name);
+	    	if(this.me == null)
+	    	{
+	    		doDisconnect();
+	    		return false;
+	    	}
 	    	return true;
 		} catch (Exception e) {
 			socket = null;
