@@ -40,12 +40,32 @@ public class Writer extends BasicAbstractWriter {
 		writeInt(radius);
 	}	
 	
+	public void writeSetPreferenceLevel(String name, String preference_name, int value)
+	{
+		writeInt(2);
+		writeInt(3);
+		writeString(name);
+		writeString(preference_name);
+		writeInt(value);
+	}
+	
 	public void writeSetMode(Mode mode)
 	{
 		writeInt(2);
 		writeInt(4);
 		writeInt(mode.ordinal());
 	}
+
+	public void writeSetPreferenceVisibility(String name, String preference_name, boolean value) 
+	{
+		writeInt(2);
+		writeInt(5);
+		writeString(name);
+		writeString(preference_name);
+		writeBoolean(value);
+	}
+
+	
 
 	
 }

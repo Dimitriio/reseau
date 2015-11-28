@@ -106,19 +106,31 @@ public class SessionClient {
 		}
 	}
 
-	public boolean changePreferenceLevel(String name, String preference, int value) {
+	public boolean changePreferenceLevel(String name, String preference_name, int value) {
 		try {
-			if (true) throw new IOException ("not yet implemented");
-			return false;
+			Writer writer = new Writer (connection.getOutputStream());
+			Reader reader = new Reader (connection.getInputStream()); 
+			writer.writeSetPreferenceLevel( name,  preference_name, value);
+			writer.send();
+			reader.receive();
+			if(reader.getType() == 3)
+				return reader.readOk();
+			return reader.readKo();
 		} catch (IOException e) {
 			return false;
 		}
 	}
 
-	public boolean changePreferenceVisibility(String name, String preference, boolean value) {
+	public boolean changePreferenceVisibility(String name, String preference_name, boolean value) {
 		try {
-			if (true) throw new IOException ("not yet implemented");
-			return false;
+			Writer writer = new Writer (connection.getOutputStream());
+			Reader reader = new Reader (connection.getInputStream()); 
+			writer.writeSetPreferenceVisibility( name,  preference_name, value);
+			writer.send();
+			reader.receive();
+			if(reader.getType() == 3)
+				return reader.readOk();
+			return reader.readKo();
 		} catch (IOException e) {
 			return false;
 		}

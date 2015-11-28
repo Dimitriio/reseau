@@ -65,12 +65,14 @@ public class SessionServer {
 					case 2 :				/* discriminant RADIUS */
 						bool = reader.setRadius(this.document, this.state.getUserName(this.connection.getPort()));
 						break;
-					case 3 :				/* discriminant PREFERENCE */
-						
+					case 3 :				/* discriminant PREFERENCE LEVEL */
+						bool = reader.setPreferenceLevel(this.document);
 						break;
 					case 4 :				/* discrimiant MODE */
 						bool = reader.setMode(this.document, this.state.getUserName(this.connection.getPort()));
 						break;
+					case 5 :				/* discriminant PREFERENCE VISIBILITY */
+						bool = reader.setPreferenceVisibility(this.document);
 					}
 					if(bool)
 						writer.writeOk();

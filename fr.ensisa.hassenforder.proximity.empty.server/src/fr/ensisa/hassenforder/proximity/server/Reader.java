@@ -40,4 +40,18 @@ public class Reader extends BasicAbstractReader {
 		int y = readInt();
 		return document.doMove(name, x, y);
 	}
+
+	public boolean setPreferenceLevel(Document document) {
+		String name = readString();
+		String preference_name = readString();
+		int value = readInt();
+		return document.doChangePreferenceLevel(name, preference_name, value);
+	}
+
+	public boolean setPreferenceVisibility(Document document) {
+		String name = readString();
+		String preference_name = readString();
+		boolean value = readBoolean();
+		return document.doChangePreferenceVisibility(name, preference_name, value);
+	}
 }
