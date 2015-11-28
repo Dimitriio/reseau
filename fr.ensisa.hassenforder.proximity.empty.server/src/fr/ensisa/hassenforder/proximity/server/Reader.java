@@ -34,4 +34,10 @@ public class Reader extends BasicAbstractReader {
 	public boolean setRadius(Document document, String name) {
 		return document.doChangeRadius(name, readInt());
 	}
+
+	public boolean readXY(Document document, String name) {
+		int x = readInt();
+		int y = readInt();
+		return document.doMove(name, x, y);
+	}
 }

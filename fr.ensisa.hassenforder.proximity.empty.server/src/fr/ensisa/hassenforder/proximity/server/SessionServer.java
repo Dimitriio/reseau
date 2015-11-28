@@ -60,7 +60,7 @@ public class SessionServer {
 					switch(reader.getType())
 					{
 					case 1 :							/* discriminant XY */
-						
+						bool = reader.readXY(this.document, this.state.getUserName(this.connection.getPort()));
 						break;
 					case 2 :				/* discriminant RADIUS */
 						bool = reader.setRadius(this.document, this.state.getUserName(this.connection.getPort()));
