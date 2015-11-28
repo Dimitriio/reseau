@@ -25,6 +25,12 @@ public class Writer extends BasicAbstractWriter {
 		writeInt(2);
 	}
 
+	public void writeSetRadius(int radius) {
+		writeInt(2);
+		writeInt(2);
+		writeInt(radius);
+	}	
+	
 	public void writeSetMode(Mode mode) {
 		writeInt(2);
 		writeInt(4);

@@ -28,6 +28,10 @@ public class Reader extends BasicAbstractReader {
 	}
 
 	public boolean setMode(Document document, String name) {
-		return document.doChangeMode(name ,Mode.values()[readInt()]);
+		return document.doChangeMode(name , Mode.values()[readInt()]);
+	}
+
+	public boolean setRadius(Document document, String name) {
+		return document.doChangeRadius(name, readInt());
 	}
 }

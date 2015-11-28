@@ -55,6 +55,7 @@ public class SessionServer {
 					}
 					break;
 				case 2 :			/* requete SET */
+					boolean bool = false;
 					reader.receive();
 					switch(reader.getType())
 					{
@@ -62,21 +63,19 @@ public class SessionServer {
 						
 						break;
 					case 2 :				/* discriminant RADIUS */
-						
+						bool = reader.setRadius(this.document, this.state.getUserName(this.connection.getPort()));
 						break;
 					case 3 :				/* discriminant PREFERENCE */
 						
 						break;
 					case 4 :				/* discrimiant MODE */
-						
-						boolean bool = reader.setMode(this.document, this.state.getUserName(this.connection.getPort()));
-						if(bool)
-							writer.writeOk();
-						else 
-							writer.writeKo();
+						bool = reader.setMode(this.document, this.state.getUserName(this.connection.getPort()));
 						break;
 					}
-					break;
+					if(bool)
+						writer.writeOk();
+					else 
+						writer.writeKo();
 				case 3 :
 					break;
 				default:
