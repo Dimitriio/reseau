@@ -30,11 +30,13 @@ public class UsersState {
 
 	public void removeUser(int port)
 	{
-		this.users.remove();
-		this.ports.remove(ports);
+		this.users.remove(getUserName(port));
+		this.ports.remove(this.ports.indexOf(port));
 	}
 
 	public String getUserName(int port) {
+		System.out.println(this.ports);
+		System.out.println(this.users);
 		return this.users.get(this.ports.indexOf(port));
 	}
 }
