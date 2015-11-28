@@ -25,4 +25,9 @@ public class Writer extends BasicAbstractWriter {
 		writeInt(2);
 	}
 
+	public void writeSetMode(Mode mode) {
+		writeInt(2);
+		writeInt(4);
+		writeInt(mode.ordinal());
+	}
 }

@@ -63,8 +63,14 @@ public class SessionClient {
 
 	public boolean changeMode (String name, Mode mode) {
 		try {
-			if (true) throw new IOException ("not yet implemented");
-			return false;
+			Writer writer = new Writer (connection.getOutputStream());
+			Reader reader = new Reader (connection.getInputStream()); 
+			writer.writeSetMode(mode);
+			writer.send();
+			reader.receive();
+			if(reader.getType() == 3)
+				return reader.readOk();
+			return reader.readKo();
 		} catch (IOException e) {
 			return false;
 		}

@@ -5,6 +5,7 @@ import java.net.Socket;
 import java.util.List;
 
 import fr.ensisa.hassenforder.network.Protocol;
+import fr.ensisa.hassenforder.proximity.model.Mode;
 import fr.ensisa.hassenforder.proximity.model.User;
 
 public class SessionServer {
@@ -53,7 +54,28 @@ public class SessionServer {
 						break;
 					}
 					break;
-				case 2 :
+				case 2 :			/* requete SET */
+					reader.receive();
+					switch(reader.getType())
+					{
+					case 1 :							/* discriminant XY */
+						
+						break;
+					case 2 :				/* discriminant RADIUS */
+						
+						break;
+					case 3 :				/* discriminant PREFERENCE */
+						
+						break;
+					case 4 :				/* discrimiant MODE */
+						
+						boolean bool = reader.setMode(this.document, this.state.getUserName(this.connection.getPort()));
+						if(bool)
+							writer.writeOk();
+						else 
+							writer.writeKo();
+						break;
+					}
 					break;
 				case 3 :
 					break;

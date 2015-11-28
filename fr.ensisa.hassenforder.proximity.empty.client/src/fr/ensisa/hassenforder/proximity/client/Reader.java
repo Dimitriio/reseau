@@ -46,4 +46,9 @@ public class Reader extends BasicAbstractReader {
 	{
 		return readBoolean();
 	}
+
+	public boolean readOk() 
+	{
+		return readBoolean();
+	}
 }

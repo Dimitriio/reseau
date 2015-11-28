@@ -26,4 +26,8 @@ public class Reader extends BasicAbstractReader {
 	public User readUser(Document document) {
 		return document.doConnect(readString());
 	}
+
+	public boolean setMode(Document document, String name) {
+		return document.doChangeMode(name ,Mode.values()[readInt()]);
+	}
 }
