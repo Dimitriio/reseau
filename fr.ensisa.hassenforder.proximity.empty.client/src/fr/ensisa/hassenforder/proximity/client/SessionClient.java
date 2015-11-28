@@ -32,7 +32,15 @@ public class SessionClient {
 	}
 
 	public void disconnect () {
-		connection = null;
+		try {
+			Writer writer = new Writer (connection.getOutputStream());
+			Reader reader = new Reader (connection.getInputStream()); 
+			writer.writeUserDisconnect();
+			writer.send();
+			reader.receive();
+			connection = null;
+		} catch (IOException e) {
+		}
 	}
 
 	public User getState(String name) {

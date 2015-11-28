@@ -40,5 +40,11 @@ public class Writer extends BasicAbstractWriter {
 		writeInt(2);
 		writeBoolean(false);
 	}
+
+	public void writeOk()
+	{
+		writeInt(3);
+		writeBoolean(false);
+	}
 }
 

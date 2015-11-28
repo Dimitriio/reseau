@@ -19,4 +19,10 @@ public class Writer extends BasicAbstractWriter {
 		writeString(name);
 	}
 
+	public void writeUserDisconnect()
+	{
+		writeInt(1);
+		writeInt(2);
+	}
+
 }

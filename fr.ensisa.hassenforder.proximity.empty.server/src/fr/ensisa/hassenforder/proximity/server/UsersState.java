@@ -1,31 +1,36 @@
 package fr.ensisa.hassenforder.proximity.server;
 
-
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import fr.ensisa.hassenforder.proximity.model.User;
+import java.util.LinkedList;
 
 public class UsersState {
-	private Map<String,Integer > usersConnected;
+	private LinkedList<String> users;
+	private LinkedList<Integer> ports;
 
 	public UsersState()
 	{
-		this.usersConnected = new HashMap<String,Integer >();
+		this.users = new LinkedList<String>();
+		this.ports = new LinkedList<Integer>();
 	}
 	
 	public void addUser( String name, int port) {
-		this.usersConnected.put(name, port);
+		this.users.addLast(name);
+		this.ports.addLast(port);
 	}
 
 	public boolean userIsConnected(String name) {
-		if(!usersConnected.isEmpty())
-			return usersConnected.containsKey(name);
+		if(!users.isEmpty())
+			return users.contains(name);
 		return false;
 	}
 	
 	public int getUserPort(String name)
 	{
-		return usersConnected.get(name);
+		return this.ports.get(this.users.indexOf(name));
+	}
+
+	public void removeUser(int port)
+	{
+		this.users.remove();
+		this.ports.remove(ports);
 	}
 }

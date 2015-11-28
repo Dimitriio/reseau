@@ -46,6 +46,11 @@ public class SessionServer {
 							this.state.addUser(user.getName(), this.connection.getPort());
 							writer.writeUser(user);
 						}
+						break;
+					case 2 :				/* discriminant DISCONNECT */
+						this.state.removeUser(this.connection.getPort());
+						writer.writeOk();
+						break;
 					}
 					break;
 				case 2 :

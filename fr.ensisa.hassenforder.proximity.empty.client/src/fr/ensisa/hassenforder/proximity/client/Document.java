@@ -42,7 +42,8 @@ public class Document {
 	    	me = session.connect(name);
 	    	if(this.me == null)
 	    	{
-	    		doDisconnect();
+	    		this.session = null;
+	    		this.socket = null;
 	    		return false;
 	    	}
 	    	return true;
