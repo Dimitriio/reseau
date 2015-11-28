@@ -34,9 +34,8 @@ public class UsersState {
 		this.ports.remove(this.ports.indexOf(port));
 	}
 
-	public String getUserName(int port) {
-		System.out.println(this.ports);
-		System.out.println(this.users);
+	public String getUserName(int port) 
+	{
 		return this.users.get(this.ports.indexOf(port));
 	}
 }
