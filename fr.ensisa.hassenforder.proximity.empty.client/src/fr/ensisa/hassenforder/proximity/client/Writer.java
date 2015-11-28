@@ -12,4 +12,11 @@ public class Writer extends BasicAbstractWriter {
 		super (outputStream);
 	}
 
+	public void writeUserConnect(String name)
+	{
+		writeInt(1);
+		writeInt(1);
+		writeString(name);
+	}
+
 }

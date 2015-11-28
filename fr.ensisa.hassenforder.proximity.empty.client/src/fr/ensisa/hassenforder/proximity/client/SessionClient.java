@@ -18,8 +18,12 @@ public class SessionClient {
 
 	public User connect (String name) {
 		try {
-			if (true) throw new IOException ("not yet implemented");
-			return null;
+			Writer writer = new Writer (connection.getOutputStream());
+			Reader reader = new Reader (connection.getInputStream()); 
+			writer.writeUserConnect(name);
+			writer.send();
+			User user = reader.readUser();
+			return user;
 		} catch (IOException e) {
 			return null;
 		}

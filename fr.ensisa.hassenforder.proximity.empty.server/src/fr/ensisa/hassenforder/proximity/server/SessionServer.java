@@ -22,10 +22,25 @@ public class SessionServer {
 			Writer writer = new Writer (connection.getOutputStream());
 			Reader reader = new Reader (connection.getInputStream());
 			reader.receive ();
-			switch (reader.getType ()) {
-			case 0 : return false; // socket closed
-			case 1 : break;
-			default: return false; // connection jammed
+			switch (reader.getType ())
+			{
+				case 0 :
+					return false; // socket closed
+				case 1 : 								/* requete USER */ 
+					reader.receive();
+					switch(reader.getType())
+					{
+					case 1 :							/* discriminant CONNECT */
+						User user = reader.readUser(this.document);
+						writer.writeUser(user);
+					}
+					break;
+				case 2 :
+					break;
+				case 3 :
+					break;
+				default:
+					return false; // connection jammed
 			}
 			writer.send ();
 			return true;
@@ -33,5 +48,5 @@ public class SessionServer {
 			return false;
 		}
 	}
-
+	
 }

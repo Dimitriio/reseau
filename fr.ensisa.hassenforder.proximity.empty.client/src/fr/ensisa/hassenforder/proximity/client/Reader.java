@@ -22,5 +22,22 @@ public class Reader extends BasicAbstractReader {
 		case 0: break;
 		}
 	}
-
+	
+	public User readUser() {
+		String name = readString();
+		int x = readInt();
+		int y = readInt();
+		int radius = readInt();
+		Mode mode = Mode.values()[readInt()];
+		int nb = readInt();
+		User user = new User(name, x, y, radius, mode);
+		for(int i = 0; i < nb ;i++ )
+		{
+			name = readString();
+			int level = readInt();
+			boolean visibility = readBoolean();
+			user.addPreference(new Preference(name, level, visibility));
+		}
+		return user;
+	}
 }
