@@ -32,7 +32,7 @@ public class Document {
 		return true;
     }
 
-    public boolean doConnect(String name) {
+	public boolean doConnect(String name) {
     	passThrough ("doConnect");
 		try {
 			if (socket != null) return false;
