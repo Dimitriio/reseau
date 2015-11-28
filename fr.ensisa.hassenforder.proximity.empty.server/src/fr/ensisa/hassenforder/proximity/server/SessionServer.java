@@ -2,10 +2,9 @@ package fr.ensisa.hassenforder.proximity.server;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
-import fr.ensisa.hassenforder.network.Protocol;
-import fr.ensisa.hassenforder.proximity.model.Mode;
 import fr.ensisa.hassenforder.proximity.model.User;
 
 public class SessionServer {
@@ -73,12 +72,20 @@ public class SessionServer {
 						break;
 					case 5 :				/* discriminant PREFERENCE VISIBILITY */
 						bool = reader.setPreferenceVisibility(this.document);
+						break;
 					}
 					if(bool)
 						writer.writeOk();
 					else 
 						writer.writeKo();
-				case 3 :
+					break;
+				case 3 :			/* requete FIND */
+					List<User> users = new ArrayList<User>();
+					users = reader.readFind(this.document);
+					if(users.isEmpty())
+						writer.writeKo();
+					else
+						writer.writeUsersList(users);
 					break;
 				default:
 					return false; // connection jammed

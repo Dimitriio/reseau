@@ -54,7 +54,13 @@ public class SessionClient {
 
 	public List<User> findNear(String name) {
 		try {
-			if (true) throw new IOException ("not yet implemented");
+			Writer writer = new Writer (connection.getOutputStream());
+			Reader reader = new Reader (connection.getInputStream()); 
+			writer.writeFind(name);
+			writer.send();
+			reader.receive();
+			if(reader.getType() == 4)
+				return reader.readUsersList();
 			return null;
 		} catch (IOException e) {
 			return null;

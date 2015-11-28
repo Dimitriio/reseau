@@ -17,7 +17,6 @@ public class UserFactory {
 
 	static public User createPamela () {
 		User user = new User ("pamela", 20, 20, 30, Mode.VISIBLE);
-		Preference preference;
 		user.addPreference (new Preference("football", -8, true));
 		user.addPreference (new Preference("boire", -6, false));
 		return user;
@@ -25,7 +24,6 @@ public class UserFactory {
 
 	static public User createSheila () {
 		User user = new User ("sheila", 80, 80, 30, Mode.VISIBLE);
-		Preference preference;
 		user.addPreference (new Preference("manger", -4, false));
 		user.addPreference (new Preference("volleyball", 5, true));
 		return user;
@@ -33,7 +31,6 @@ public class UserFactory {
 
 	static public User createGeorges () {
 		User user = new User ("georges", 70, 40, 30, Mode.VISIBLE);
-		Preference preference;
 		user.addPreference (new Preference("boire", 6, false));
 		user.addPreference (new Preference("manger", 6, false));
 		return user;

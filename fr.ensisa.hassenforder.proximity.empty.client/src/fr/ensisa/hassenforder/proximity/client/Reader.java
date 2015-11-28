@@ -51,4 +51,13 @@ public class Reader extends BasicAbstractReader {
 	{
 		return readBoolean();
 	}
+
+	public List<User> readUsersList() 
+	{
+		int size = readInt();
+		List<User> users = new ArrayList<User>();
+		for(int i = 0; i<size;i++)
+			users.add(readUser());
+		return users;
+	}
 }

@@ -129,5 +129,4 @@ public class Document {
     	preference.setVisibility(value);
     	return true;
     }
-	
 }

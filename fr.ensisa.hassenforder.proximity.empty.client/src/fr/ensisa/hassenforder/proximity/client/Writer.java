@@ -65,6 +65,12 @@ public class Writer extends BasicAbstractWriter {
 		writeBoolean(value);
 	}
 
+	public void writeFind(String name) 
+	{
+		writeInt(3);
+		writeString(name);
+	}
+
 	
 
 	
