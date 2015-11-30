@@ -56,7 +56,7 @@ public class Writer extends BasicAbstractWriter {
 			writeInt(users.get(i).getMode().ordinal());
 			writeInt(users.get(i).getPreferences().size());
 			for(int j = 0; j < users.get(i).getPreferences().size(); j++ )
-				writePreference(users.get(j), j);
+				writePreference(users.get(i), j);
 		}
 	}
 }
