@@ -45,7 +45,13 @@ public class SessionClient {
 
 	public User getState(String name) {
 		try {
-			if (true) throw new IOException ("not yet implemented");
+			Writer writer = new Writer (connection.getOutputStream());
+			Reader reader = new Reader (connection.getInputStream()); 
+			writer.writeUserConnect(name);
+			writer.send();
+			reader.receive();
+			if(reader.getType() == 1)
+				return reader.readUser();
 			return null;
 		} catch (IOException e) {
 			return null;
