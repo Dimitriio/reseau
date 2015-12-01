@@ -140,15 +140,17 @@ public class Document {
         }
     }
 
-    public User getUser(int x, int y) {
-        {
-            User u = getMe();
-            if (u.getX()/10 == x/10 && u.getY()/10 == y/10) return u;
-        }
-        for (User u : getOthers()) {
-            if (u.getX()/10 == x/10 && u.getY()/10 == y/10) return u;
-        }
-        return null;
+    public User getUser(int x, int y)
+    {
+    	User u = getMe();
+    	if( u != null)
+    	{
+    		if (u.getX()/10 == x/10 && u.getY()/10 == y/10) return u;
+    		for (User v : getOthers()) {
+    			if (v.getX()/10 == x/10 && v.getY()/10 == y/10) return v;
+    		}
+    	}
+    	return null;
     }
 
     public int getId(User user) {
