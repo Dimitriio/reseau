@@ -4,6 +4,7 @@ import java.io.OutputStream;
 import java.util.List;
 
 import fr.ensisa.hassenforder.network.BasicAbstractWriter;
+import fr.ensisa.hassenforder.network.Protocol;
 import fr.ensisa.hassenforder.proximity.model.User;
 
 public class Writer extends BasicAbstractWriter {
@@ -13,7 +14,7 @@ public class Writer extends BasicAbstractWriter {
 	}
 	
 	public void writeUser(User user) {
-		writeInt(1);
+		writeInt(Protocol.SERVER_ANSWER_USER);
 		writeString(user.getName());
 		writeInt(user.getX());
 		writeInt(user.getY());
@@ -33,19 +34,19 @@ public class Writer extends BasicAbstractWriter {
 
 	public void writeKo()
 	{
-		writeInt(2);
+		writeInt(Protocol.SERVER_ANSWER_KO);
 		writeBoolean(false);
 	}
 
 	public void writeOk()
 	{
-		writeInt(3);
+		writeInt(Protocol.SERVER_ANSWER_OK);
 		writeBoolean(true);
 	}
 
 	public void writeUsersList(List<User> users) 
 	{
-		writeInt(4);
+		writeInt(Protocol.SERVER_ANSWER_USERS_LIST);
 		writeInt(users.size());
 		for(int i = 0; i< users.size(); i++)
 		{

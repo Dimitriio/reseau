@@ -5,6 +5,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.ensisa.hassenforder.network.Protocol;
 import fr.ensisa.hassenforder.proximity.model.User;
 
 public class SessionServer {
@@ -28,11 +29,11 @@ public class SessionServer {
 			{
 				case 0 : 
 					return false; // socket closed
-				case 1 : 								/* requete USER */ 
+				case Protocol.CLIENT_REQUEST_ESTABLISH : 								/* requete USER */ 
 					reader.receive();
 					switch(reader.getType())
 					{
-					case 1 :							/* discriminant CONNECT */
+					case Protocol.CONNECTION :							/* discriminant CONNECT */
 						User user = reader.readUser(this.document);
 						if(user == null)
 						{
@@ -47,30 +48,30 @@ public class SessionServer {
 							writer.writeUser(user);
 						}
 						break;
-					case 2 :				/* discriminant DISCONNECT */
+					case Protocol.DISCONNECTION :				/* discriminant DISCONNECT */
 						this.state.removeUser(this.connection.getPort());
 						writer.writeOk();
 						break;
 					}
 					break;
-				case 2 :			/* requete SET */
+				case Protocol.CLIENT_REQUEST_SET :			/* requete SET */
 					boolean bool = false;
 					reader.receive();
 					switch(reader.getType())
 					{
-					case 1 :							/* discriminant XY */
+					case Protocol.XY :							/* discriminant XY */
 						bool = reader.readXY(this.document, this.state.getUserName(this.connection.getPort()));
 						break;
-					case 2 :				/* discriminant RADIUS */
+					case Protocol.RADIUS :				/* discriminant RADIUS */
 						bool = reader.setRadius(this.document, this.state.getUserName(this.connection.getPort()));
 						break;
-					case 3 :				/* discriminant PREFERENCE LEVEL */
+					case Protocol.PREFERENCE_LEVEL :				/* discriminant PREFERENCE LEVEL */
 						bool = reader.setPreferenceLevel(this.document);
 						break;
-					case 4 :				/* discrimiant MODE */
+					case Protocol.MODE :				/* discrimiant MODE */
 						bool = reader.setMode(this.document, this.state.getUserName(this.connection.getPort()));
 						break;
-					case 5 :				/* discriminant PREFERENCE VISIBILITY */
+					case Protocol.PREFERENCE_VISIBILITY :				/* discriminant PREFERENCE VISIBILITY */
 						bool = reader.setPreferenceVisibility(this.document);
 						break;
 					}
@@ -79,7 +80,7 @@ public class SessionServer {
 					else 
 						writer.writeKo();
 					break;
-				case 3 :			/* requete FIND */
+				case Protocol.CLIENT_REQUEST_FIND :			/* requete FIND */
 					List<User> users = new ArrayList<User>();
 					users = reader.readFind(this.document);
 					if(users.isEmpty())

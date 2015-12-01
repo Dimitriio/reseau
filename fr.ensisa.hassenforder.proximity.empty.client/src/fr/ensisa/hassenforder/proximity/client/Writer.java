@@ -14,36 +14,36 @@ public class Writer extends BasicAbstractWriter {
 
 	public void writeUserConnect(String name)
 	{
-		writeInt(1);
-		writeInt(1);
+		writeInt(Protocol.CLIENT_REQUEST_ESTABLISH);
+		writeInt(Protocol.CONNECTION);
 		writeString(name);
 	}
 
 	public void writeUserDisconnect()
 	{
-		writeInt(1);
-		writeInt(2);
+		writeInt(Protocol.CLIENT_REQUEST_ESTABLISH);
+		writeInt(Protocol.DISCONNECTION);
 	}
 	
 	public void writeSetXY(int x, int y) 
 	{
-		writeInt(2);
-		writeInt(1);
+		writeInt(Protocol.CLIENT_REQUEST_SET);
+		writeInt(Protocol.XY);
 		writeInt(x);
 		writeInt(y);		
 	}
 
 	public void writeSetRadius(int radius) 
 	{
-		writeInt(2);
-		writeInt(2);
+		writeInt(Protocol.CLIENT_REQUEST_SET);
+		writeInt(Protocol.RADIUS);
 		writeInt(radius);
 	}	
 	
 	public void writeSetPreferenceLevel(String name, String preference_name, int value)
 	{
-		writeInt(2);
-		writeInt(3);
+		writeInt(Protocol.CLIENT_REQUEST_SET);
+		writeInt(Protocol.PREFERENCE_LEVEL);
 		writeString(name);
 		writeString(preference_name);
 		writeInt(value);
@@ -51,15 +51,15 @@ public class Writer extends BasicAbstractWriter {
 	
 	public void writeSetMode(Mode mode)
 	{
-		writeInt(2);
-		writeInt(4);
+		writeInt(Protocol.CLIENT_REQUEST_SET);
+		writeInt(Protocol.MODE);
 		writeInt(mode.ordinal());
 	}
 
 	public void writeSetPreferenceVisibility(String name, String preference_name, boolean value) 
 	{
-		writeInt(2);
-		writeInt(5);
+		writeInt(Protocol.CLIENT_REQUEST_SET);
+		writeInt(Protocol.PREFERENCE_VISIBILITY);
 		writeString(name);
 		writeString(preference_name);
 		writeBoolean(value);
@@ -67,7 +67,7 @@ public class Writer extends BasicAbstractWriter {
 
 	public void writeFind(String name) 
 	{
-		writeInt(3);
+		writeInt(Protocol.CLIENT_REQUEST_FIND);
 		writeString(name);
 	}
 

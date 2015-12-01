@@ -23,7 +23,7 @@ public class SessionClient {
 			writer.writeUserConnect(name);
 			writer.send();
 			reader.receive();
-			if(reader.getType() == 1)
+			if(reader.getType() == Protocol.SERVER_ANSWER_USER)
 				return reader.readUser();
 			return null;
 		} catch (IOException e) {
@@ -50,7 +50,7 @@ public class SessionClient {
 			writer.writeUserConnect(name);
 			writer.send();
 			reader.receive();
-			if(reader.getType() == 1)
+			if(reader.getType() == Protocol.SERVER_ANSWER_USER)
 				return reader.readUser();
 			return null;
 		} catch (IOException e) {
@@ -65,7 +65,7 @@ public class SessionClient {
 			writer.writeFind(name);
 			writer.send();
 			reader.receive();
-			if(reader.getType() == 4)
+			if(reader.getType() == Protocol.SERVER_ANSWER_USERS_LIST)
 				return reader.readUsersList();
 			return null;
 		} catch (IOException e) {
@@ -80,7 +80,7 @@ public class SessionClient {
 			writer.writeSetMode(mode);
 			writer.send();
 			reader.receive();
-			if(reader.getType() == 3)
+			if(reader.getType() == Protocol.SERVER_ANSWER_OK)
 				return reader.readOk();
 			return reader.readKo();
 		} catch (IOException e) {
@@ -95,7 +95,7 @@ public class SessionClient {
 			writer.writeSetXY(x, y);
 			writer.send();
 			reader.receive();
-			if(reader.getType() == 3)
+			if(reader.getType() == Protocol.SERVER_ANSWER_OK)
 				return reader.readOk();
 			return reader.readKo();
 		} catch (IOException e) {
@@ -110,7 +110,7 @@ public class SessionClient {
 			writer.writeSetRadius(radius);
 			writer.send();
 			reader.receive();
-			if(reader.getType() == 3)
+			if(reader.getType() == Protocol.SERVER_ANSWER_OK)
 				return reader.readOk();
 			return reader.readKo();
 		} catch (IOException e) {
@@ -125,7 +125,7 @@ public class SessionClient {
 			writer.writeSetPreferenceLevel( name,  preference_name, value);
 			writer.send();
 			reader.receive();
-			if(reader.getType() == 3)
+			if(reader.getType() == Protocol.SERVER_ANSWER_OK)
 				return reader.readOk();
 			return reader.readKo();
 		} catch (IOException e) {
@@ -140,7 +140,7 @@ public class SessionClient {
 			writer.writeSetPreferenceVisibility( name,  preference_name, value);
 			writer.send();
 			reader.receive();
-			if(reader.getType() == 3)
+			if(reader.getType() == Protocol.SERVER_ANSWER_OK)
 				return reader.readOk();
 			return reader.readKo();
 		} catch (IOException e) {
